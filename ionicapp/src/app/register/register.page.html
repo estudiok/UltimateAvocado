@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="success">
+
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>  
+    <ion-title>Registro</ion-title>
+    <ion-progress-bar *ngIf="bandInsert" color="tertiary" type="indeterminate"></ion-progress-bar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Ingresar datos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <form [formGroup]="formRegister">
+        <ion-item>
+          <ion-label position="floating">Primer Nombre <span class="color-obligatory">*</span></ion-label>
+          <ion-input formControlName="firstName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Segundo Nombre</ion-label>
+          <ion-input formControlName="secondName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Apellido Paterno <span class="color-obligatory">*</span></ion-label>
+          <ion-input formControlName="fatherLastName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Apellido Materno <span class="color-obligatory">*</span></ion-label>
+          <ion-input formControlName="motherLastName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Email <span class="color-obligatory">*</span></ion-label>
+          <ion-input formControlName="email" type="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Contraseña <span class="color-obligatory">*</span></ion-label>
+          <ion-input formControlName="password" type="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Repetir contraseña <span class="color-obligatory">*</span></ion-label>
+          <ion-input formControlName="repeatPassword" type="password"></ion-input>
+        </ion-item>
+      </form>
+      <br>
+      <ion-button color="success" (click)="register()">
+        Registrarse
+      </ion-button>
+      
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

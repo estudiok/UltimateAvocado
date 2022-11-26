@@ -1,0 +1,11 @@
+# export package
+pip list --format freeze > requirements.txt
+
+#install pip
+pip install -r requirements.txt
+
+# conda activte normal
+conda activate project310
+
+# source activate pro
+source activate project310

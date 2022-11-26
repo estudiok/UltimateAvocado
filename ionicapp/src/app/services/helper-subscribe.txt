@@ -1,0 +1,75 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Usuario } from 'src/app/models/usuario';
+import { ReservacionService } from 'src/app/services/reservacion.service';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
+})
+export class LoginPage implements OnInit {
+
+  user: string = "";
+  pass: string = "";
+
+  bandMensaje: boolean = false;
+
+  usuario:Usuario;
+
+  constructor(private reservacion_service: ReservacionService, private router: Router) {
+    
+
+  }
+
+  ngOnInit() {
+  }
+
+  entrar() {
+    
+    this.reservacion_service.obtenerCredencial(this.user, this.pass).subscribe(
+      (sUsuario: Usuario) => {
+        this.usuario = sUsuario;
+
+        if(Object.keys(this.usuario).length === 0) {
+          console.log("no hay nada");
+          this.bandMensaje = true;
+        } else {
+
+          localStorage.setItem('usuario', JSON.stringify(this.usuario));
+          this.bandMensaje = false;
+          // console.log("entro");
+          // console.log(this.usuario[0]);
+
+          if (this.usuario[0].idRol === 1) {  
+            // Estudiante
+            location.href="/home"
+            
+          } else if (this.usuario[0].idRol === 2) {
+            //Bibliotecario
+            location.href="/homebi"
+          } else {
+            console.log("hubo un error");
+          }
+
+          // let data = JSON.parse(localStorage.getItem('usuario'));
+          
+          // console.log(data[0]);
+          // let dataSession = data[0] as Usuario;
+
+          // console.log(dataSession.nombre);
+          // console.log(dataSession.apellido);
+          // console.log(dataSession.contrasenia);
+          // console.log(dataSession.usuario);
+
+
+          // console.log("existe");
+        }
+
+      }
+
+    );
+
+  }
+
+}
